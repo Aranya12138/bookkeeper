@@ -23,26 +23,6 @@
     --viz-grid:    #e1e0d9;
     --viz-axis:    #c3c2b7;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --viz-series-1: #3987e5;
-      --viz-series-2: #d95926;
-      --viz-series-3: #199e70;
-      --viz-series-4: #c98500;
-      --viz-series-5: #d55181;
-      --viz-series-6: #008300;
-      --viz-series-7: #9085e9;
-      --viz-series-8: #e66767;
-      --viz-income:  #0ca30c;
-      --viz-expense: #e66767;
-      --viz-surface: #1a1a19;
-      --viz-ink:     #f0efec;
-      --viz-ink-2:   #c3c2b7;
-      --viz-grid:    #2c2c2a;
-      --viz-axis:    #383835;
-    }
-    body { background: #0d0d0d; color: #f0efec; }
-  }
   body {
     margin: 0; padding: 24px;
     font: 14px system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
@@ -50,78 +30,118 @@
   }
   h1 { font-size: 18px; margin: 0 0 4px; }
   .sub { color: #898781; margin-bottom: 20px; font-size: 13px; }
+  h2.sec {
+    font-size: 15px; margin: 28px 0 4px; padding-top: 20px;
+    border-top: 2px solid #e1e0d9;
+  }
+  .sec-note { color: #898781; font-size: 12px; margin: 0 0 14px; }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; max-width: 1200px; }
   .card {
     background: var(--viz-surface); border: 1px solid rgba(11,11,11,.10);
     border-radius: 12px; padding: 14px 16px 10px;
   }
-  .card h2 { font-size: 14px; margin: 0 0 2px; font-weight: 600; }
+  .card h3 { font-size: 14px; margin: 0 0 2px; font-weight: 600; }
   .card p { margin: 0 0 10px; font-size: 12px; color: #898781; }
   .chart { height: 240px; }
   .wide { grid-column: 1 / -1; }
   .wide .chart { height: 260px; }
+  .stat-row { display: flex; gap: 20px; margin: 4px 0 12px; flex-wrap: wrap; }
+  .stat { font-size: 12px; color: #898781; }
+  .stat b { display: block; font-size: 17px; color: #0b0b0b; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
   <h1>chart.js 自测页</h1>
-  <div class="sub">9 号图表模块 · 直接双击打开即可，不需要起服务器，也不需要联网</div>
+  <div class="sub">9 号图表模块 · 双击打开即可，不起服务、不联网</div>
+
+  <h2 class="sec">一、接口数据格式自测</h2>
+  <p class="sec-note">验证模块能吃下 6/7/8 号三种返回结构，以及双系列、空状态。</p>
 
   <div class="grid">
     <div class="card">
-      <h2>支出分类占比</h2>
-      <p>7 号接口数据：{category, amount}</p>
+      <h3>支出分类占比</h3>
+      <p>7 号数据：{category, amount}</p>
       <div class="chart" id="c-pie"></div>
     </div>
 
     <div class="card">
-      <h2>各分类金额排行</h2>
-      <p>7 号接口数据，柱状图版</p>
+      <h3>各分类金额排行</h3>
+      <p>同一份数据，柱状图版</p>
       <div class="chart" id="c-bar"></div>
     </div>
 
     <div class="card wide">
-      <h2>近 14 天收支走势</h2>
-      <p>6 号接口数据：{period, income, expense}，双系列</p>
+      <h3>近 14 天收支走势</h3>
+      <p>6 号数据：{period, income, expense}，双系列</p>
       <div class="chart" id="c-line"></div>
     </div>
 
     <div class="card">
-      <h2>金额分布区间</h2>
-      <p>8 号接口数据：{bucket, count}</p>
+      <h3>金额分布区间</h3>
+      <p>8 号数据：{bucket, count}</p>
       <div class="chart" id="c-dist"></div>
     </div>
 
     <div class="card">
-      <h2>空状态</h2>
+      <h3>空状态</h3>
       <p>没有数据时不该是一片空白</p>
       <div class="chart" id="c-empty"></div>
     </div>
   </div>
 
+  <h2 class="sec">二、用 mock.js 的 20 条记录跑一遍</h2>
+  <p class="sec-note">
+    下面的数字不是写死的，是用 <code>static/js/mock.js</code> 的 20 条记录按 6/7/8 号接口的返回结构现算的。
+    接口通了之后，把算出来的数组换成 <code>fetch</code> 的返回值即可，图表这边不用改。
+  </p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>支出分类占比（by-category）</h3>
+      <p>GET /api/stats/by-category?type=expense</p>
+      <div class="chart" id="m-pie"></div>
+    </div>
+
+    <div class="card">
+      <h3>金额分布（by-amount）</h3>
+      <p>GET /api/stats/by-amount → distribution</p>
+      <div class="stat-row" id="m-stats"></div>
+      <div class="chart" id="m-bar"></div>
+    </div>
+
+    <div class="card wide">
+      <h3>按周收支走势（by-date, granularity=week）</h3>
+      <p>GET /api/stats/by-date?granularity=week</p>
+      <div class="chart" id="m-line"></div>
+    </div>
+  </div>
+
+<script src="static/js/mock.js"></script>
 <script src="static/js/chart.js"></script>
 <script>
-  // ——— 7 号：按类别统计 ———
-  Chart.pie('#c-pie', [
-    { category: '饮食', amount: 1268.5 },
-    { category: '交通', amount: 386 },
-    { category: '购物', amount: 2140 },
-    { category: '娱乐', amount: 520 },
-    { category: '学习', amount: 799 },
-    { category: '居住', amount: 2400 },
-    { category: '医疗', amount: 168 },
-    { category: '其他', amount: 233.5 }
-  ]);
+/* ============ 一、静态样例 ============ */
 
-  Chart.bar('#c-bar', [
-    { category: '居住', amount: 2400 },
-    { category: '购物', amount: 2140 },
-    { category: '饮食', amount: 1268.5 },
-    { category: '学习', amount: 799 },
-    { category: '娱乐', amount: 520 },
-    { category: '交通', amount: 386 }
-  ]);
+Chart.pie('#c-pie', [
+  { category: '饮食', amount: 1268.5 },
+  { category: '交通', amount: 386 },
+  { category: '购物', amount: 2140 },
+  { category: '娱乐', amount: 520 },
+  { category: '学习', amount: 799 },
+  { category: '居住', amount: 2400 },
+  { category: '医疗', amount: 168 },
+  { category: '其他', amount: 233.5 }
+]);
 
-  // ——— 6 号：按日期统计 ———
+Chart.bar('#c-bar', [
+  { category: '居住', amount: 2400 },
+  { category: '购物', amount: 2140 },
+  { category: '饮食', amount: 1268.5 },
+  { category: '学习', amount: 799 },
+  { category: '娱乐', amount: 520 },
+  { category: '交通', amount: 386 }
+]);
+
+(function () {
   var days = ['10-25','10-26','10-27','10-28','10-29','10-30','10-31',
               '11-01','11-02','11-03','11-04','11-05','11-06','11-07'];
   var income  = [0, 0, 0, 0, 0, 0, 8000, 0, 0, 0, 0, 0, 0, 300];
@@ -131,21 +151,131 @@
     { series: [
         { key: 'income',  name: '收入', color: 'var(--viz-income)' },
         { key: 'expense', name: '支出', color: 'var(--viz-expense)' }
-      ] }
-  );
+      ] });
+})();
 
-  // ——— 8 号：金额分布 ———
-  Chart.bar('#c-dist', [
-    { bucket: '0-50', count: 12 },
-    { bucket: '50-100', count: 9 },
-    { bucket: '100-300', count: 8 },
-    { bucket: '300-500', count: 3 },
-    { bucket: '500-1000', count: 2 },
-    { bucket: '1000+', count: 1 }
-  ]);
+Chart.bar('#c-dist', [
+  { bucket: '0-50', count: 12 },
+  { bucket: '50-100', count: 9 },
+  { bucket: '100-300', count: 8 },
+  { bucket: '300-500', count: 3 },
+  { bucket: '500-1000', count: 2 },
+  { bucket: '1000+', count: 1 }
+]);
 
-  // ——— 空状态 ———
-  Chart.pie('#c-empty', []);
+Chart.pie('#c-empty', []);
+
+/* ============ 二、按接口结构算真实数据 ============ */
+
+function round2(n) { return Math.round(n * 100) / 100; }
+function iso(d) {
+  var m = d.getMonth() + 1, day = d.getDate();
+  return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (day < 10 ? '0' : '') + day;
+}
+
+// 对应 6 号：GET /api/stats/by-date?granularity=day|week|month
+function byDate(records, granularity) {
+  var map = {};
+  records.forEach(function (r) {
+    var d = new Date(r.date + 'T00:00:00');
+    var key;
+    if (granularity === 'month') key = r.date.slice(0, 7);
+    else if (granularity === 'week') {
+      var offset = (d.getDay() + 6) % 7;                       // 周一为一周起点
+      key = iso(new Date(d.getTime() - offset * 864e5));
+    } else key = r.date;
+
+    if (!map[key]) map[key] = { period: key, income: 0, expense: 0, balance: 0 };
+    if (r.type === 'income') map[key].income += r.amount;
+    else map[key].expense += r.amount;
+  });
+  return Object.keys(map).sort().map(function (k) {
+    var o = map[k];
+    o.income = round2(o.income);
+    o.expense = round2(o.expense);
+    o.balance = round2(o.income - o.expense);
+    return o;
+  });
+}
+
+// 对应 7 号：GET /api/stats/by-category?type=expense|income
+function byCategory(records, type) {
+  var map = {}, total = 0;
+  records.forEach(function (r) {
+    if (r.type !== type) return;
+    if (!map[r.category]) map[r.category] = { category: r.category, amount: 0, count: 0 };
+    map[r.category].amount += r.amount;
+    map[r.category].count += 1;
+    total += r.amount;
+  });
+  return Object.keys(map).map(function (k) {
+    var o = map[k];
+    return {
+      category: o.category,
+      amount: round2(o.amount),
+      percent: round2(o.amount / total * 100),
+      count: o.count
+    };
+  }).sort(function (a, b) { return b.amount - a.amount; });
+}
+
+// 对应 8 号：GET /api/stats/by-amount
+function byAmount(records) {
+  var amounts = records.map(function (r) { return r.amount; });
+  var total = amounts.reduce(function (a, b) { return a + b; }, 0);
+  var buckets = [[0, 50], [50, 100], [100, 300], [300, 500], [500, 1000], [1000, Infinity]];
+  var distribution = buckets.map(function (b) {
+    return {
+      bucket: b[1] === Infinity ? b[0] + '+' : b[0] + '-' + b[1],
+      count: amounts.filter(function (a) { return a >= b[0] && a < b[1]; }).length
+    };
+  });
+  return {
+    count: records.length,
+    total: round2(total),
+    max: Math.max.apply(null, amounts),
+    min: Math.min.apply(null, amounts),
+    avg: round2(total / records.length),
+    top5: records.slice().sort(function (a, b) { return b.amount - a.amount; }).slice(0, 5),
+    distribution: distribution
+  };
+}
+
+// mock.js 里是顶层 const，不会变成 window 的属性；走它自己导出的 BookApp.mock.records
+var RECORDS = (window.BookApp && BookApp.mock && BookApp.mock.records)
+           || (typeof MOCK_RECORDS !== 'undefined' ? MOCK_RECORDS : []);
+var cat = byCategory(RECORDS, 'expense');
+var amt = byAmount(RECORDS);
+var wk  = byDate(RECORDS, 'week');
+
+// 饼图：直接把 7 号的返回丢进去，模块自己认 category / amount
+Chart.pie('#m-pie', cat);
+
+// 柱状图：8 号的 distribution，认 bucket / count
+Chart.bar('#m-bar', amt.distribution, { showValues: true });
+
+// 折线图：6 号的返回，用 opts.series 指定画哪两个字段
+Chart.line('#m-line', wk, {
+  series: [
+    { key: 'income',  name: '收入', color: 'var(--viz-income)' },
+    { key: 'expense', name: '支出', color: 'var(--viz-expense)' }
+  ]
+});
+
+// 8 号的标量字段也摆出来，核对返回结构用
+document.getElementById('m-stats').innerHTML = [
+  ['记录数', amt.count + ' 笔'],
+  ['合计', '¥' + amt.total],
+  ['平均', '¥' + amt.avg],
+  ['最大', '¥' + amt.max]
+].map(function (kv) {
+  return '<div class="stat">' + kv[0] + '<b>' + kv[1] + '</b></div>';
+}).join('');
+
+// 控制台里能看到算出来的原始结构，方便和 6/7/8 号对字段
+console.log('[预览] by-category', cat);
+console.log('[预览] by-amount', amt);
+console.log('[预览] by-date(week)', wk);
 </script>
 </body>
 </html>
