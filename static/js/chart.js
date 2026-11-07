@@ -567,7 +567,28 @@
     var maxLbl = 0;
     labels.forEach(function (l) { maxLbl = Math.max(maxLbl, measure(ctx, l, '11px ' + FONT)); });
     var rotate = maxLbl > slot - 8 && n > 1;
-    var padB = rotate ? 36 : 26;
+
+    // 斜排时把共有的年份前缀剥掉。6 号的 period 是 "2026-10-01"，
+    // 一个月 30 多根柱子挤在 880px 里，斜着写有 58px 长，末端会从画布底边漏出去。
+    // 一年之内的日期前四位本来就是冗余的；跨年时前缀不一致，就原样保留。
+    if (rotate) {
+      var yPrefix = (/^(\d{4})-(?=\d)/.exec(labels[0] || '') || [])[1];
+      if (yPrefix) {
+        var cut = yPrefix + '-';
+        var same = true;
+        for (var q = 0; q < labels.length; q++) {
+          if (String(labels[q]).indexOf(cut) !== 0) { same = false; break; }
+        }
+        if (same) {
+          labels = labels.map(function (l) { return String(l).slice(cut.length); });
+          maxLbl = 0;
+          labels.forEach(function (l) { maxLbl = Math.max(maxLbl, measure(ctx, l, '11px ' + FONT)); });
+        }
+      }
+    }
+
+    // 底部留白按「斜排后实际占多高」算，不写死 —— 只留 36px 的话长标签会被切。
+    var padB = rotate ? Math.max(30, Math.ceil(maxLbl * Math.sin(Math.PI / 5)) + 14) : 26;
 
     var plot = { x: padL, y: padT, w: Math.max(10, w - padL - padR), h: Math.max(10, h - padT - padB) };
     var y0 = plot.y + plot.h;   // 基线

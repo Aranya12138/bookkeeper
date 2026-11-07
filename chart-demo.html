@@ -76,6 +76,12 @@
       <div class="chart" id="c-line"></div>
     </div>
 
+    <div class="card wide">
+      <h3>日粒度 38 根柱子</h3>
+      <p>6 号默认按日聚合、区间放宽时的真实形态；period 是 "YYYY-MM-DD"，标签必须斜排且缩略</p>
+      <div class="chart" id="c-dense"></div>
+    </div>
+
     <div class="card">
       <h3>金额分布区间</h3>
       <p>8 号数据：{bucket, count}</p>
@@ -164,6 +170,23 @@ Chart.bar('#c-dist', [
 ]);
 
 Chart.pie('#c-empty', []);
+
+// 6 号的真实形态：日粒度、区间放宽到 38 天，period 是 "YYYY-MM-DD"
+(function () {
+  var out = [], d = new Date(2026, 9, 1), end = new Date(2026, 10, 7);
+  var seed = [86, 42, 158, 0, 65, 320, 128, 78, 45, 210, 96, 33, 142, 88];
+  var i = 0;
+  while (d <= end) {
+    var m = d.getMonth() + 1, day = d.getDate();
+    out.push({
+      label: d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (day < 10 ? '0' : '') + day,
+      value: seed[i++ % seed.length]
+    });
+    d.setDate(d.getDate() + 1);
+  }
+  // 不传 opts，和 6 号 stats-date.js 里的调用方式保持一致
+  Chart.bar('#c-dense', out);
+})();
 
 /* ============ 二、按接口结构算真实数据 ============ */
 
