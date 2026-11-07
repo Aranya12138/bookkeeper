@@ -907,8 +907,51 @@
       var out = [];
       for (var i = 0; i < (n || 8); i++) out.push(t.series[i % 8]);
       return out;
+    },
+
+    /**
+     * 在某个锚点元素旁边自动放一个 .chart-box 并画图。
+     * 6/7/8 号不用自己写容器，页面上也不用手动加 div：
+     *   BookApp.chart.into('#category-list', data, { type:'pie', id:'chart-category' });
+     * @param {string|HTMLElement} anchor 锚点，图表插在它前面
+     * @param {Array} data
+     * @param {{type?:string, id?:string, before?:boolean}} opts
+     */
+    into: function (anchor, data, opts) {
+      opts = opts || {};
+      var box = ensureBox(anchor, opts.id, opts.before !== false);
+      if (!box) return null;
+      var kind = opts.type || 'pie';
+      return Chart[kind](box, data, opts);
     }
   };
+
+  /* ============================ 与 6/7/8 号的对接 ============================ */
+
+  // 找到（或造出）挂在锚点旁边的容器。视图重新渲染后旧容器会脱离文档，
+  // 这里用 isConnected 判断，避免把图画到一个已经不在页面上的 div 里。
+  function ensureBox(anchor, id, before) {
+    var a = resolve(anchor);
+    if (!a || !a.parentNode) return null;
+    id = id || 'chart-box';
+    var box = document.getElementById(id);
+    if (box && box.isConnected) return box;
+    box = document.createElement('div');
+    box.id = id;
+    box.className = 'chart-box';
+    if (before) a.parentNode.insertBefore(box, a);
+    else a.parentNode.insertBefore(box, a.nextSibling);
+    return box;
+  }
+
+  // 7 号已经实现的约定：数据挂到 BookApp.categoryChartData，同时派发 categoryStatsUpdated
+  if (global.addEventListener) {
+    global.addEventListener('categoryStatsUpdated', function (e) {
+      var data = (e && e.detail) || (global.BookApp && global.BookApp.categoryChartData) || [];
+      if (!data || !data.length) return;
+      Chart.into('#category-list', data, { id: 'chart-category', type: 'pie' });
+    });
+  }
 
   if (global.Chart && !global.Chart.__bookapp) {
     console.warn('[chart] 页面里已经加载了第三方 Chart.js，window.Chart 会被本模块覆盖。' +
