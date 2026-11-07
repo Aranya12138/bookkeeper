@@ -1,0 +1,362 @@
+[
+  {
+    "id": "f7620e97-1a9c-4892-a70f-d515a06b9056",
+    "type": "expense",
+    "category": "购物",
+    "amount": 601.45,
+    "date": "2026-08-10",
+    "note": "换季外套",
+    "created_at": "2026-08-10T12:00:00+00:00"
+  },
+  {
+    "id": "836c995e-db13-48a5-b16e-5dd888dbe652",
+    "type": "income",
+    "category": "工资",
+    "amount": 11303.37,
+    "date": "2026-08-16",
+    "note": "月度工资",
+    "created_at": "2026-08-16T12:00:00+00:00"
+  },
+  {
+    "id": "e61bb08d-1ca3-47c8-9a82-d4e6079767a2",
+    "type": "income",
+    "category": "兼职",
+    "amount": 335.95,
+    "date": "2026-08-16",
+    "note": "外包小程序尾款",
+    "created_at": "2026-08-16T12:00:00+00:00"
+  },
+  {
+    "id": "0c2b3aa3-d733-4e5d-9ea3-c0d87653c31e",
+    "type": "expense",
+    "category": "娱乐",
+    "amount": 55.92,
+    "date": "2026-08-17",
+    "note": "Steam 游戏",
+    "created_at": "2026-08-17T12:00:00+00:00"
+  },
+  {
+    "id": "9b2391b3-7fbc-42ef-b830-1d88b0104cdd",
+    "type": "expense",
+    "category": "娱乐",
+    "amount": 162.58,
+    "date": "2026-08-21",
+    "note": "演唱会门票",
+    "created_at": "2026-08-21T12:00:00+00:00"
+  },
+  {
+    "id": "8ac08705-b2bd-4693-9923-d2ee36d22c50",
+    "type": "income",
+    "category": "其他",
+    "amount": 593.27,
+    "date": "2026-08-21",
+    "note": "副业收入",
+    "created_at": "2026-08-21T12:00:00+00:00"
+  },
+  {
+    "id": "895cc1bb-bcb4-44c9-9574-55738db41fef",
+    "type": "expense",
+    "category": "交通",
+    "amount": 79.25,
+    "date": "2026-08-23",
+    "note": "共享单车月卡",
+    "created_at": "2026-08-23T12:00:00+00:00"
+  },
+  {
+    "id": "94d09cea-10fe-44cf-b7b4-f979afe16bd6",
+    "type": "expense",
+    "category": "居住",
+    "amount": 2401.54,
+    "date": "2026-08-26",
+    "note": "物业公摊",
+    "created_at": "2026-08-26T12:00:00+00:00"
+  },
+  {
+    "id": "26e0980b-d6c8-43cb-8759-d40ca2825088",
+    "type": "income",
+    "category": "理财",
+    "amount": 1395.73,
+    "date": "2026-08-26",
+    "note": "国债逆回购利息",
+    "created_at": "2026-08-26T12:00:00+00:00"
+  },
+  {
+    "id": "21d3e262-435f-4903-b694-2040a73a6dd0",
+    "type": "expense",
+    "category": "娱乐",
+    "amount": 35.34,
+    "date": "2026-08-28",
+    "note": "Steam 游戏",
+    "created_at": "2026-08-28T12:00:00+00:00"
+  },
+  {
+    "id": "e14c0d45-fbd5-4a11-a9f6-8edad84e278c",
+    "type": "income",
+    "category": "工资",
+    "amount": 11977.62,
+    "date": "2026-09-01",
+    "note": "月度工资（含绩效）",
+    "created_at": "2026-09-01T12:00:00+00:00"
+  },
+  {
+    "id": "a5a54bd2-01c4-45f3-915b-735f29d08c60",
+    "type": "income",
+    "category": "理财",
+    "amount": 668.29,
+    "date": "2026-09-02",
+    "note": "基金分红",
+    "created_at": "2026-09-02T12:00:00+00:00"
+  },
+  {
+    "id": "4ea23c5b-b971-4545-b6f9-5305e23a83ec",
+    "type": "expense",
+    "category": "饮食",
+    "amount": 53.19,
+    "date": "2026-09-05",
+    "note": "周末聚餐",
+    "created_at": "2026-09-05T12:00:00+00:00"
+  },
+  {
+    "id": "18140a2f-4ca5-4335-9e26-2864d552efd6",
+    "type": "expense",
+    "category": "居住",
+    "amount": 1905.66,
+    "date": "2026-09-14",
+    "note": "宽带费",
+    "created_at": "2026-09-14T12:00:00+00:00"
+  },
+  {
+    "id": "36fff77d-083a-45e7-b4ff-2d1cd93cd8ef",
+    "type": "expense",
+    "category": "饮食",
+    "amount": 69.93,
+    "date": "2026-09-20",
+    "note": "奶茶一杯",
+    "created_at": "2026-09-20T12:00:00+00:00"
+  },
+  {
+    "id": "13b6e694-72fb-474f-95ef-a779b18f0940",
+    "type": "expense",
+    "category": "居住",
+    "amount": 826.9,
+    "date": "2026-09-22",
+    "note": "物业公摊",
+    "created_at": "2026-09-22T12:00:00+00:00"
+  },
+  {
+    "id": "e565c327-bd1e-4e33-8831-750be71947ff",
+    "type": "income",
+    "category": "工资",
+    "amount": 9690.19,
+    "date": "2026-09-24",
+    "note": "月度工资",
+    "created_at": "2026-09-24T12:00:00+00:00"
+  },
+  {
+    "id": "e3d25049-286f-4c9f-9b52-74612cf3cb49",
+    "type": "income",
+    "category": "工资",
+    "amount": 10828.25,
+    "date": "2026-09-29",
+    "note": "月度工资",
+    "created_at": "2026-09-29T12:00:00+00:00"
+  },
+  {
+    "id": "78648e3f-3583-432c-8a48-fc58c545b002",
+    "type": "income",
+    "category": "工资",
+    "amount": 10609.51,
+    "date": "2026-10-01",
+    "note": "月度工资",
+    "created_at": "2026-10-01T12:00:00+00:00"
+  },
+  {
+    "id": "c21a09b0-55f9-4286-9b05-6a5fad538203",
+    "type": "expense",
+    "category": "医疗",
+    "amount": 95.45,
+    "date": "2026-10-01",
+    "note": "体检套餐",
+    "created_at": "2026-10-01T12:00:00+00:00"
+  },
+  {
+    "id": "64150292-9298-4511-90e3-1d3b90b31ff5",
+    "type": "expense",
+    "category": "饮食",
+    "amount": 38.63,
+    "date": "2026-10-02",
+    "note": "早餐豆浆油条",
+    "created_at": "2026-10-02T12:00:00+00:00"
+  },
+  {
+    "id": "dbd46900-4b20-4872-af89-1eede2ca0d6a",
+    "type": "expense",
+    "category": "居住",
+    "amount": 2384.35,
+    "date": "2026-10-05",
+    "note": "物业公摊",
+    "created_at": "2026-10-05T12:00:00+00:00"
+  },
+  {
+    "id": "d57e54b2-1a33-4cc1-8764-3d8fdd72e573",
+    "type": "expense",
+    "category": "医疗",
+    "amount": 75.28,
+    "date": "2026-10-08",
+    "note": "体检套餐",
+    "created_at": "2026-10-08T12:00:00+00:00"
+  },
+  {
+    "id": "1e135a2b-f3bb-40fc-9332-76ac354f8a78",
+    "type": "income",
+    "category": "兼职",
+    "amount": 544.64,
+    "date": "2026-10-09",
+    "note": "外包小程序尾款",
+    "created_at": "2026-10-09T12:00:00+00:00"
+  },
+  {
+    "id": "b628e512-eabf-4bb2-9176-1cfc0648975a",
+    "type": "expense",
+    "category": "交通",
+    "amount": 49.97,
+    "date": "2026-10-10",
+    "note": "地铁通勤",
+    "created_at": "2026-10-10T12:00:00+00:00"
+  },
+  {
+    "id": "0cceaf6e-5a5d-49b1-bcd7-2dd30a4e6897",
+    "type": "expense",
+    "category": "购物",
+    "amount": 270.5,
+    "date": "2026-10-11",
+    "note": "零食大礼包",
+    "created_at": "2026-10-11T12:00:00+00:00"
+  },
+  {
+    "id": "37482dbf-6bbe-4516-9089-800b44f847e9",
+    "type": "expense",
+    "category": "学习",
+    "amount": 51.02,
+    "date": "2026-10-11",
+    "note": "文具",
+    "created_at": "2026-10-11T12:00:00+00:00"
+  },
+  {
+    "id": "ea22511f-7ea4-4cb9-a7e4-0978c014bcf9",
+    "type": "expense",
+    "category": "交通",
+    "amount": 58.08,
+    "date": "2026-10-11",
+    "note": "共享单车月卡",
+    "created_at": "2026-10-11T12:00:00+00:00"
+  },
+  {
+    "id": "8d05d154-8f84-4e22-be01-1e21909d121a",
+    "type": "expense",
+    "category": "购物",
+    "amount": 231.32,
+    "date": "2026-10-12",
+    "note": "新鼠标",
+    "created_at": "2026-10-12T12:00:00+00:00"
+  },
+  {
+    "id": "86df51e9-f035-409a-8af3-26717cf55692",
+    "type": "expense",
+    "category": "居住",
+    "amount": 233.8,
+    "date": "2026-10-15",
+    "note": "燃气费",
+    "created_at": "2026-10-15T12:00:00+00:00"
+  },
+  {
+    "id": "844c6e5f-7efc-4f49-92b3-f68545dcc816",
+    "type": "expense",
+    "category": "其他",
+    "amount": 138.71,
+    "date": "2026-10-16",
+    "note": "打印资料",
+    "created_at": "2026-10-16T12:00:00+00:00"
+  },
+  {
+    "id": "9d9dca90-3893-4535-a645-8fae5489f082",
+    "type": "expense",
+    "category": "交通",
+    "amount": 65.0,
+    "date": "2026-10-19",
+    "note": "高铁票",
+    "created_at": "2026-10-19T12:00:00+00:00"
+  },
+  {
+    "id": "a7182fdf-da1c-45d8-80ba-19b047f8ecee",
+    "type": "income",
+    "category": "其他",
+    "amount": 374.19,
+    "date": "2026-10-19",
+    "note": "报销到账",
+    "created_at": "2026-10-19T12:00:00+00:00"
+  },
+  {
+    "id": "3a9d6ca9-af29-4bf6-af45-98783602bdb3",
+    "type": "expense",
+    "category": "医疗",
+    "amount": 282.01,
+    "date": "2026-10-22",
+    "note": "体检套餐",
+    "created_at": "2026-10-22T12:00:00+00:00"
+  },
+  {
+    "id": "08cd875c-c423-4b76-90ad-99d7bc439b2e",
+    "type": "expense",
+    "category": "娱乐",
+    "amount": 165.3,
+    "date": "2026-10-24",
+    "note": "KTV 欢唱",
+    "created_at": "2026-10-24T12:00:00+00:00"
+  },
+  {
+    "id": "8078ba52-b532-44f6-bc4d-068b7f6c4428",
+    "type": "expense",
+    "category": "学习",
+    "amount": 460.49,
+    "date": "2026-10-30",
+    "note": "考试报名费",
+    "created_at": "2026-10-30T12:00:00+00:00"
+  },
+  {
+    "id": "67893311-82e8-4f2b-9912-aa50589d6af1",
+    "type": "income",
+    "category": "红包",
+    "amount": 133.89,
+    "date": "2026-10-31",
+    "note": "群红包手气最佳",
+    "created_at": "2026-10-31T12:00:00+00:00"
+  },
+  {
+    "id": "036dbe18-01c1-4600-b0db-e29f41d2a2d3",
+    "type": "income",
+    "category": "工资",
+    "amount": 8522.4,
+    "date": "2026-11-01",
+    "note": "月度工资（含绩效）",
+    "created_at": "2026-11-01T12:00:00+00:00"
+  },
+  {
+    "id": "7e1ddfcc-e687-438f-a29f-4bbccc6657ed",
+    "type": "income",
+    "category": "其他",
+    "amount": 683.02,
+    "date": "2026-11-01",
+    "note": "闲置二手卖出",
+    "created_at": "2026-11-01T12:00:00+00:00"
+  },
+  {
+    "id": "58c3f826-d7ac-42e3-80f3-22daaf26776e",
+    "type": "expense",
+    "category": "饮食",
+    "amount": 16.6,
+    "date": "2026-11-06",
+    "note": "晚餐外卖",
+    "created_at": "2026-11-06T12:00:00+00:00"
+  }
+]
