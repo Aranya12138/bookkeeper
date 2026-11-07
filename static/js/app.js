@@ -13,8 +13,8 @@ window.BookApp.state = {
   editingId: null,       // 正在编辑的记录 ID
 };
 
-/** 视图注册表 */
-window.BookApp.views = {};
+/** 视图注册表（各模块在 app.js 之前加载，故保留已注册的视图） */
+window.BookApp.views = window.BookApp.views || {};
 
 /**
  * Toast 占位（由 10 号在 index.html 中实现后替换）
@@ -28,7 +28,7 @@ window.BookApp.showToast = function (msg, type = "info") {
  * 由 4 号实现：点击"编辑"回填表单
  * @param {string} id - 记录 ID
  */
-window.BookApp.editRecord = function (id) {
+window.BookApp.editRecord = window.BookApp.editRecord || function (id) {
   console.warn("editRecord 尚未由 4 号实现，id:", id);
   // 4号 TODO: 实现编辑回填逻辑
 };
