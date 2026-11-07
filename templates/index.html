@@ -3,25 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="个人记账本 —— 收支记录、明细查询、多维度统计与导入导出">
   <title>个人记账本</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
   <!-- ===== 导航栏 ===== -->
-  <nav class="navbar">
+  <nav class="navbar" aria-label="主导航">
     <h1 class="logo">💰 个人记账本</h1>
-    <div class="nav-links">
-      <a href="#" class="nav-item active" data-view="record">记账</a>
-      <a href="#" class="nav-item" data-view="list">明细</a>
-      <a href="#" class="nav-item" data-view="stats-date">时间统计</a>
-      <a href="#" class="nav-item" data-view="stats-category">分类统计</a>
-      <a href="#" class="nav-item" data-view="stats-amount">金额分析</a>
-      <a href="#" class="nav-item" data-view="io">导入导出</a>
+    <div class="nav-links" role="tablist">
+      <a href="#" class="nav-item active" data-view="record" role="tab">记账</a>
+      <a href="#" class="nav-item" data-view="list" role="tab">明细</a>
+      <a href="#" class="nav-item" data-view="stats-date" role="tab">时间统计</a>
+      <a href="#" class="nav-item" data-view="stats-category" role="tab">分类统计</a>
+      <a href="#" class="nav-item" data-view="stats-amount" role="tab">金额分析</a>
+      <a href="#" class="nav-item" data-view="io" role="tab">导入导出</a>
     </div>
   </nav>
 
   <!-- ===== Toast 容器 ===== -->
-  <div id="toast-container"></div>
+  <div id="toast-container" aria-live="polite"></div>
 
   <!-- ===== 主视图容器 ===== -->
   <main id="view-container" class="container">
@@ -30,6 +32,15 @@
       <p>加载中...</p>
     </div>
   </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="footer">
+    个人记账本 · 软件工程现场编程 · FitPulse 团队
+  </footer>
+
+  <noscript>
+    <div class="empty-state">本应用需要启用 JavaScript 才能使用。</div>
+  </noscript>
 
   <!-- ===== 统一脚本引入 ===== -->
   <!-- 基础（1号） -->
@@ -45,5 +56,29 @@
   <script src="/static/js/io.js"></script>
   <!-- 主入口（1号，最后加载以调度视图） -->
   <script src="/static/js/app.js"></script>
+  <!-- 10号：真实 DOM Toast（覆盖 app.js 的 console 占位实现） -->
+  <script>
+    (function () {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      window.BookApp.showToast = function (msg, type) {
+        type = type || "info";
+        const el = document.createElement("div");
+        el.className = "toast toast-" + type;
+        el.textContent = msg;
+        container.appendChild(el);
+        // 同屏最多保留 4 条，防止刷屏
+        while (container.children.length > 4) {
+          container.removeChild(container.firstChild);
+        }
+        // 2.6s 后自动退场
+        setTimeout(function () {
+          el.classList.add("toast-out");
+          setTimeout(function () { el.remove(); }, 300);
+        }, 2600);
+      };
+    })();
+  </script>
 </body>
 </html>

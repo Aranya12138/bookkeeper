@@ -364,3 +364,195 @@ tr:hover td {
   font-weight: 700;
   color: #4f46e5;
 }
+
+/* ================================================================
+ * 10 号界面增强（追加于骨架之上，不改动上方既有规则）
+ * ================================================================ */
+
+/* ===== 主题变量（统一配色管理，供各模块引用） ===== */
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --danger: #ef4444;
+  --success: #22c55e;
+  --info: #3b82f6;
+  --warning: #f59e0b;
+  --text-sub: #888;
+  --border: #e0e0e0;
+}
+
+/* ===== 类别徽章（4/5号表格、7号分类榜可用） ===== */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #eef2ff;
+  color: #4f46e5;
+  white-space: nowrap;
+}
+
+.badge.income  { background: #dcfce7; color: #16a34a; }
+.badge.expense { background: #fee2e2; color: #dc2626; }
+
+/* ===== 加载态（各模块异步请求时可插入） ===== */
+.loading {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #e0e0e0;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== 空状态增强：大图标 ===== */
+.empty-state .icon {
+  display: block;
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+/* ===== Toast 退场动画（配合 index.html 中的实现） ===== */
+.toast-out {
+  animation: slideOut 0.3s ease forwards;
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(120%); opacity: 0; }
+}
+
+/* ===== 视图切换过渡 ===== */
+#view-container > * {
+  animation: fadeUp 0.25s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* 减弱动态效果偏好（无障碍） */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ===== 页脚 ===== */
+.footer {
+  text-align: center;
+  color: #aaa;
+  font-size: 12px;
+  padding: 24px 0 32px;
+}
+
+/* ===== 表格操作列按钮间距（5号列表用） ===== */
+.row-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* ===== 移动端增强：导航横向滑动，避免换行占高 ===== */
+@media (max-width: 640px) {
+  .nav-links {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .summary-card .value {
+    font-size: 20px;
+  }
+}
+
+/* ===== 记账页：支出/收入切换按钮组（4号 record.js） ===== */
+.type-toggle .btn {
+  flex: 0 0 auto;
+  min-width: 88px;
+}
+
+.type-toggle .btn + .btn {
+  margin-left: 0;
+}
+
+/* ===== 导入导出页（11号 io.js） ===== */
+.io-tip {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.io-report {
+  border-left: 4px solid var(--info);
+}
+
+.io-report h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.io-report-error {
+  border-left-color: var(--danger);
+  background: #fef2f2;
+}
+
+.io-report-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.io-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  background: #f3f4f6;
+}
+
+.io-stat b {
+  font-size: 15px;
+}
+
+.io-stat-ok   { background: #dcfce7; color: #15803d; }
+.io-stat-skip { background: #fef3c7; color: #b45309; }
+.io-stat-err  { background: #fee2e2; color: #b91c1c; }
+
+.io-error-list {
+  margin: 8px 0 0 20px;
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+.io-error-list li {
+  margin-bottom: 4px;
+}
+
+.io-report details {
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.io-report summary {
+  cursor: pointer;
+  color: #555;
+  user-select: none;
+}
+
+.io-report details[open] summary {
+  margin-bottom: 6px;
+  color: #b91c1c;
+}
